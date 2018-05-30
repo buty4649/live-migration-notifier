@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    amq-protocol (2.3.0)
+    bunny (2.9.2)
+      amq-protocol (~> 2.3.0)
+    slack-incoming-webhooks (0.2.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bunny
+  slack-incoming-webhooks
+
+BUNDLED WITH
+   1.16.1
