@@ -2,18 +2,21 @@
 
 require 'bunny'
 require 'json'
+require 'yaml'
 require 'slack/incoming/webhooks'
 
+config = YAML.load_file("config.yml")
+
 def rabbitmq_init
-  host = ENV['RABBITMQ_HOST']
-  port = ENV['RABBITMQ_PORT'] || 5672
-  user = ENV['RABBITMQ_USER'] || 'guest'
-  pass = ENV['RABBITMQ_PASSWORD'] || 'guest'
+  host = config['RABBITMQ_HOST']
+  port = config['RABBITMQ_PORT'] || 5672
+  user = config['RABBITMQ_USER'] || 'guest'
+  pass = config['RABBITMQ_PASSWORD'] || 'guest'
 
   Bunny.new(hostname: host, port: port, user: user, pass: pass)
 end
 
-webhook_url = ENV["SLACK_WEBHOOK_URL"]
+webhook_url = config["SLACK_WEBHOOK_URL"]
 slack = Slack::Incoming::Webhooks.new(webhook_url)
 
 connection = rabbitmq_init
