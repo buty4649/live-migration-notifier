@@ -7,7 +7,7 @@ require 'slack/incoming/webhooks'
 
 config = YAML.load_file("config.yml")
 
-def rabbitmq_init
+def rabbitmq_init(config)
   host = config['RABBITMQ_HOST']
   port = config['RABBITMQ_PORT'] || 5672
   user = config['RABBITMQ_USER'] || 'guest'
@@ -19,7 +19,7 @@ end
 webhook_url = config["SLACK_WEBHOOK_URL"]
 slack = Slack::Incoming::Webhooks.new(webhook_url)
 
-connection = rabbitmq_init
+connection = rabbitmq_init(config)
 connection.start
 
 ch = connection.create_channel
