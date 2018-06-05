@@ -17,7 +17,7 @@ def rabbitmq_init(config)
   Bunny.new(hostname: host, port: port, user: user, pass: pass)
 end
 
-webhook_url = config["SLACK_WEBHOOK_URL"]
+webhook_url = config["slack_webhook_url"]
 slack = Slack::Incoming::Webhooks.new(webhook_url)
 
 connection = rabbitmq_init(config)
