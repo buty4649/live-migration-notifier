@@ -5,7 +5,8 @@ require 'json'
 require 'yaml'
 require 'slack/incoming/webhooks'
 
-config = YAML.load_file("config.yml")
+config_file = ARGV[0] || File.dirname(__FILE__) + '/config.yml'
+config = YAML.load_file(config_file)
 
 def rabbitmq_init(config)
   host = config['RABBITMQ_HOST']
