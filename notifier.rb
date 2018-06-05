@@ -9,10 +9,10 @@ config_file = ARGV[0] || File.dirname(__FILE__) + '/config.yml'
 config = YAML.load_file(config_file)
 
 def rabbitmq_init(config)
-  host = config['RABBITMQ_HOST']
-  port = config['RABBITMQ_PORT'] || 5672
-  user = config['RABBITMQ_USER'] || 'guest'
-  pass = config['RABBITMQ_PASSWORD'] || 'guest'
+  host = config['rabbitmq_host']
+  port = config['rabbitmq_port'] || 5672
+  user = config['rabbitmq_user'] || 'guest'
+  pass = config['rabbitmq_password'] || 'guest'
 
   Bunny.new(hostname: host, port: port, user: user, pass: pass)
 end
