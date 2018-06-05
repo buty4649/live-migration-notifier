@@ -112,7 +112,9 @@ begin
       dst = delivery_info.routing_key.gsub(/^compute\./, "")
 
       hostname = instance["display_name"]
+      instance_uuid = instance["uuid"]
       user = payload["_context_user_name"]
+      req_id = payload["_context_request_id"]
 
       attachment = [{
         text: "live-migrationが失敗しました",
@@ -139,6 +141,16 @@ begin
             value: dst,
             short: true
           },
+          {
+            title: "request-id",
+            value: req_id,
+            short: false,
+          },
+          {
+            title: "uuid",
+            value: instance_uuid,
+            short: false,
+          }
         ]
       }]
     end
