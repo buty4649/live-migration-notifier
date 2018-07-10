@@ -155,7 +155,7 @@ begin
         ]
       }]
     end
-    slack.post "", attachments: attachment
+    slack.post "", attachments: attachment if attachment
   end
 rescue Interrupt
   connection.close
