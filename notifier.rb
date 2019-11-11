@@ -29,7 +29,7 @@ x = ch.topic("nova")
 q.bind(x, routing_key: "compute.*")
 
 begin
-  q.subscribe(manual_ack: true, block: true) do |delivery_info, properties, msg|
+  q.subscribe(manual_ack: false, block: true) do |delivery_info, properties, msg|
     payload = JSON.parse(JSON.parse(msg)["oslo.message"])
     method = payload["method"]
 
