@@ -1,6 +1,6 @@
 module buty4649/live-migration-notifier
 
-go 1.18
+go 1.17
 
 require (
 	github.com/goccy/go-yaml v1.9.5
