@@ -1,5 +1,5 @@
 rabbitmq_host: <rabbitmq host>
-rabbitmq_port: <abbitmq port>
+rabbitmq_port: <rabbitmq port>
 rabbitmq_user: <rabbitmq user>
-rabbitmq_passworu: <rabbitmq password>
+rabbitmq_password: <rabbitmq password>
 slack_webhook_url: <webhook url>
