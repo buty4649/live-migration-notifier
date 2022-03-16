@@ -28,6 +28,7 @@ type Payload struct {
 }
 
 type PayloadArgs struct {
+	Dest     string     `json:"dest"`
 	Instance NovaObject `json:"instance"`
 }
 
@@ -140,7 +141,11 @@ func extractMessage(dest string, payload *Payload) *LiveMigrationData {
 	}
 
 	data.Src = payload.Args.Instance.Data["host"].(string)
-	data.Dest = dest
+	if payload.Args.Dest != "" {
+		data.Dest = payload.Args.Dest
+	} else {
+		data.Dest = dest
+	}
 	data.Hostname = payload.Args.Instance.Data["display_name"].(string)
 	data.User = payload.ContextUserName
 	data.RequestId = payload.ContextRequestId
