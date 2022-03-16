@@ -28,7 +28,7 @@ func postSlack(data *LiveMigrationData, webhook_url string) error {
 			},
 			{
 				"title": "dest",
-				"value": data.Src,
+				"value": data.Dest,
 				"short": true,
 			},
 		},
