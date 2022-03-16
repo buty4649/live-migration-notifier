@@ -1,2 +1,5 @@
 config.yml
 !*config.yml.sample
+/live-migration-notifier
+
+dist/
