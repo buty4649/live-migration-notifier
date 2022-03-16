@@ -7,24 +7,10 @@ OpenStackのLiveMigrationの通知するくん
 ```sh
 # config.yml の情報を埋めます
 $ cp config.yml.sample config.yml
+$ vim config.yml
 
-$ bundle install
-$ bundle exec ./notifier.rb
+$ ./live-migration-notifier
 ```
 
-systemdで動かす場合には以下のようなUnitファイルを作ります
-
-```
-[Unit]
-Description = live-migration notifier
-
-[Service]
-User=ubuntu
-Group=ubuntu
-ExecStart = /usr/bin/ruby /path/to/notifier.rb
-Restart = always
-Type = simple
-
-[Install]
-WantedBy = multi-user.target
-```
+systemdで動かす場合にはUnitファイルを作る必要があります。
+その場合は[サンプル](systemd/live-migration-notifier.service)を参考にしてください。

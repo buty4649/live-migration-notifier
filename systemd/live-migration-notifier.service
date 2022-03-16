@@ -1,0 +1,14 @@
+[Unit]
+Description = live-migration notifier
+# If it is the same server as rabbitmq-server, uncomment it.
+After = rabbitmq-server.service
+
+[Service]
+User=ubuntu
+Group=ubuntu
+ExecStart = /usr/local/bin/live-migration-notifier -c /usr/local/etc/live-migration-notifier.yaml
+Restart = always
+Type = simple
+
+[Install]
+WantedBy = multi-user.target
