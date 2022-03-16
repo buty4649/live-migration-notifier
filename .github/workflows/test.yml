@@ -6,10 +6,11 @@ jobs:
   test:
     name: Test
     strategy:
-      go_version: [1.18]
+      matrix:
+        go_version: [1.18]
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Go ${{matrix.go_version}}
+      - name: Set up Go ${{ matrix.go_version }}
         uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go_version }}
