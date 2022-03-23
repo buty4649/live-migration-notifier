@@ -42,7 +42,6 @@ type NovaObject struct {
 
 type LiveMigrationData struct {
 	Message   string
-	Color     string
 	Src       string
 	Dest      string
 	Hostname  string
@@ -125,16 +124,16 @@ func extractMessage(dest string, payload *Payload) *LiveMigrationData {
 
 	switch payload.Method {
 	case "live_migration":
-		data.Message = "live-migrationが開始しました"
-		data.Color = "warning"
+		data.Message = ":new: *live-migrationが予約されました*"
+
+	case "pre_live_migration":
+		data.Message = ":running: *live-migrationが開始されました*"
 
 	case "post_live_migration_at_destination":
-		data.Message = "live-migrationが完了しました"
-		data.Color = "good"
+		data.Message = ":end: *live-migrationが完了しました*"
 
 	case "rollback_live_migration_at_destination":
-		data.Message = "live-migrationが失敗しました"
-		data.Color = "danger"
+		data.Message = ":x: *live-migrationが失敗しました*"
 
 	default:
 		return nil
