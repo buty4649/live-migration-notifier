@@ -2,6 +2,8 @@
 
 OpenStackのLiveMigrationの通知するくん
 
+![sample](sample.png)
+
 ## 使い方
 
 ```sh
