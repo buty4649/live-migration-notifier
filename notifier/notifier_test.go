@@ -37,13 +37,16 @@ func TestExtractMessage(t *testing.T) {
 	data := extractMessage("test", &payload)
 
 	got := data.Message
-	expect := "live-migrationが開始しました"
+	expect := ":new: *live-migrationが予約されました*"
 	if got != expect {
 		t.Errorf("got: %v; expect: %s", got, expect)
 	}
 
-	got = data.Color
-	expect = "warning"
+	payload.Method = "pre_live_migration"
+	data = extractMessage("test", &payload)
+
+	got = data.Message
+	expect = ":running: *live-migrationが開始されました*"
 	if got != expect {
 		t.Errorf("got: %v; expect: %s", got, expect)
 	}
@@ -52,13 +55,7 @@ func TestExtractMessage(t *testing.T) {
 	data = extractMessage("test", &payload)
 
 	got = data.Message
-	expect = "live-migrationが完了しました"
-	if got != expect {
-		t.Errorf("got: %v; expect: %s", got, expect)
-	}
-
-	got = data.Color
-	expect = "good"
+	expect = ":end: *live-migrationが完了しました*"
 	if got != expect {
 		t.Errorf("got: %v; expect: %s", got, expect)
 	}
@@ -67,13 +64,7 @@ func TestExtractMessage(t *testing.T) {
 	data = extractMessage("test", &payload)
 
 	got = data.Message
-	expect = "live-migrationが失敗しました"
-	if got != expect {
-		t.Errorf("got: %v; expect: %s", got, expect)
-	}
-
-	got = data.Color
-	expect = "danger"
+	expect = ":x: *live-migrationが失敗しました*"
 	if got != expect {
 		t.Errorf("got: %v; expect: %s", got, expect)
 	}
