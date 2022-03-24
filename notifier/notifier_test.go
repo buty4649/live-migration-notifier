@@ -33,20 +33,11 @@ func TestExtractMessage(t *testing.T) {
 		ContextRequestId: "test",
 	}
 
-	payload.Method = "live_migration"
+	payload.Method = "pre_live_migration"
 	data := extractMessage("test", &payload)
 
 	got := data.Message
-	expect := ":new: *live-migrationが予約されました*"
-	if got != expect {
-		t.Errorf("got: %v; expect: %s", got, expect)
-	}
-
-	payload.Method = "pre_live_migration"
-	data = extractMessage("test", &payload)
-
-	got = data.Message
-	expect = ":running: *live-migrationが開始されました*"
+	expect := ":running: *live-migrationが開始されました*"
 	if got != expect {
 		t.Errorf("got: %v; expect: %s", got, expect)
 	}
