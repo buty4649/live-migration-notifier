@@ -123,9 +123,6 @@ func extractMessage(dest string, payload *Payload) *LiveMigrationData {
 	var data LiveMigrationData
 
 	switch payload.Method {
-	case "live_migration":
-		data.Message = ":new: *live-migrationが予約されました*"
-
 	case "pre_live_migration":
 		data.Message = ":running: *live-migrationが開始されました*"
 
