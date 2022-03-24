@@ -17,8 +17,8 @@ func plainText(text string, emoji bool) block {
 	return block{"type": "plain_text", "text": text, "emoji": emoji}
 }
 
-func markdown(text string) block {
-	return block{"type": "mrkdwn", "text": text}
+func markdown(text string, verbatim bool) block {
+	return block{"type": "mrkdwn", "text": text, "verbatim": verbatim}
 }
 
 func divider() block {
@@ -32,11 +32,18 @@ func context(elements []block) block {
 func postSlack(data *LiveMigrationData, webhook_url string) error {
 	payload := map[string][]block{
 		"blocks": {
-			section(markdown(data.Message)),
+			section(plainText(data.Message, true)),
 			divider(),
-			section(plainText(fmt.Sprintf(":desktop_computer: %s", data.Hostname), true)),
-			context([]block{plainText(data.UUID, false)}),
-			section(plainText(fmt.Sprintf(":package: %s → %s", data.Src, data.Dest), true)),
+			context([]block{
+				markdown(
+					fmt.Sprintf(":desktop_computer: *%s*\n:pencil2: %s", data.Hostname, data.UUID),
+					true,
+				),
+			}),
+			context([]block{
+				plainText(fmt.Sprintf(":outbox_tray: %s", data.Src), true),
+				plainText(fmt.Sprintf(":inbox_tray: %s", data.Dest), true),
+			}),
 			divider(),
 			context([]block{
 				plainText(data.RequestId, false),

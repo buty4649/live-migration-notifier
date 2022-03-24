@@ -124,13 +124,13 @@ func extractMessage(dest string, payload *Payload) *LiveMigrationData {
 
 	switch payload.Method {
 	case "pre_live_migration":
-		data.Message = ":running: *live-migrationが開始されました*"
+		data.Message = ":arrow_forward: live-migrationが開始されました"
 
 	case "post_live_migration_at_destination":
-		data.Message = ":end: *live-migrationが完了しました*"
+		data.Message = ":white_check_mark: live-migrationが完了しました"
 
 	case "rollback_live_migration_at_destination":
-		data.Message = ":x: *live-migrationが失敗しました*"
+		data.Message = ":x: live-migrationが失敗しました"
 
 	default:
 		return nil
